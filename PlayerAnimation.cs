@@ -34,6 +34,7 @@ public class PlayerAnimation : MonoBehaviour {
         if(Input.GetKeyUp(KeyCode.Space))
         {
             animator.SetBool("Jump", false);
+            animator.SetFloat("Speed", 0f);
             jump = 0;
         }
 	}

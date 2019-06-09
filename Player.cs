@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class Player : MonoBehaviour
     public CapsuleCollider col;
     public Transform pos;
     public float moveSpeed = 5f;
-
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +41,17 @@ public class Player : MonoBehaviour
         Vector3 movement = new Vector3(0f, 0f, moveVertical);
         transform.Translate(movement * Time.deltaTime * moveSpeed);
         transform.Rotate(new Vector3(0f, lookHorizontal, 0f));
-
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.tag == "Finish")
+        {
+            SceneManager.LoadScene(2);
+        }
+        if(collision.collider.tag == "Enemy")
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
 }
